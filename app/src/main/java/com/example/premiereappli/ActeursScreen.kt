@@ -75,7 +75,7 @@ fun ActeursScreen(navController: NavHostController, viewModel: MainViewModel = v
                             .align(Alignment.CenterHorizontally)
                             .then(if (nbcolumn == 4) Modifier.size(150.dp) else Modifier.fillMaxSize())
                     )
-                    Text(text = actor.name, modifier = Modifier.weight(1f) .align(Alignment.CenterHorizontally))
+                    Text(text = actor.name, modifier = Modifier.align(Alignment.CenterHorizontally))
                 }
             }
         }

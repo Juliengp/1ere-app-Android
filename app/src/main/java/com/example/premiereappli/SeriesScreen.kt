@@ -75,8 +75,8 @@ fun SeriesScreen(navController: NavHostController, viewModel: MainViewModel) {
                             .align(Alignment.CenterHorizontally)
                             .then(if (nbcolumn == 4) Modifier.size(130.dp) else Modifier.fillMaxSize())
                     )
-                    Text(text = serie.name, modifier = Modifier.weight(1f) .align(Alignment.CenterHorizontally))
-                    Text(text = DateFormat(serie.first_air_date), modifier = Modifier.weight(1f) .align(Alignment.CenterHorizontally))
+                    Text(text = serie.name, modifier = Modifier.align(Alignment.CenterHorizontally))
+                    Text(text = DateFormat(serie.first_air_date), modifier = Modifier.align(Alignment.CenterHorizontally))
                 }
             }
         }

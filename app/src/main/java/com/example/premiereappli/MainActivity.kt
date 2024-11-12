@@ -23,6 +23,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -59,41 +60,53 @@ class MainActivity : ComponentActivity() {
                 val windowSizeClass = currentWindowAdaptiveInfo().windowSizeClass
                 val currentDestination = navController.currentBackStackEntryAsState().value?.destination
                 val viewModel : MainViewModel = viewModel()
+                val configuration = LocalConfiguration.current
+                val compact = configuration.screenWidthDp < configuration.screenHeightDp
+
 
                 Scaffold(
                     bottomBar = {
-                        if(currentDestination?.hasRoute<DestinationProfil>()== false) {
-                        NavigationBar {
-                            NavigationBarItem(
-                                icon = { Icon(
-                                    painter = painterResource(id = R.drawable.baseline_movie_24),
-                                    contentDescription = "films"
-                                ) },
-                                selected = currentDestination?.route == DestinationFilms().toString(),
-                                onClick = { navController.navigate(DestinationFilms()) }
-                            )
-                            NavigationBarItem(
-                                icon={Icon(
-                                    painter = painterResource(id = R.drawable.baseline_tv_24),
-                                    contentDescription = "series"
-                                )},
-                                selected = currentDestination?.route == DestinationSeries().toString(),
-                                onClick = { navController.navigate(DestinationSeries()) }
-                            )
-                            NavigationBarItem(
-                                icon={Icon(
-                                    painter = painterResource(id = R.drawable.baseline_person_24),
-                                    contentDescription = "acteurs"
-                                )},
-                                selected = currentDestination?.route == DestinationActeurs().toString(),
-                                onClick = {
-                                    viewModel.resetActors()
-                                    navController.navigate(DestinationActeurs()) }
-                            )
+                        if (currentDestination?.hasRoute<DestinationProfil>() == false) {
+                            NavigationBar {
+                                NavigationBarItem(
+                                    icon = {
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.baseline_movie_24),
+                                            contentDescription = "films"
+                                        )
+                                    },
+                                    selected = currentDestination?.route == DestinationFilms().toString(),
+                                    onClick = { navController.navigate(DestinationFilms()) }
+                                )
+                                NavigationBarItem(
+                                    icon = {
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.baseline_tv_24),
+                                            contentDescription = "series"
+                                        )
+                                    },
+                                    selected = currentDestination?.route == DestinationSeries().toString(),
+                                    onClick = { navController.navigate(DestinationSeries()) }
+                                )
+                                NavigationBarItem(
+                                    icon = {
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.baseline_person_24),
+                                            contentDescription = "acteurs"
+                                        )
+                                    },
+                                    selected = currentDestination?.route == DestinationActeurs().toString(),
+                                    onClick = {
+                                        viewModel.resetActors()
+                                        navController.navigate(DestinationActeurs())
+                                    }
+                                )
                             }
+
                         }
                     }
-                ) { innerPadding ->
+
+                    ) { innerPadding ->
                     NavHost(navController, startDestination = DestinationProfil(),
                         Modifier.padding(innerPadding)) {
                         composable<DestinationProfil> { HomeScreen(windowSizeClass, navController) }

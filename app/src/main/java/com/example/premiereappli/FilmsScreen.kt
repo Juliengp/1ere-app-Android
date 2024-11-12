@@ -74,8 +74,8 @@ fun FilmsScreen(navController: NavHostController, viewModel: MainViewModel) {
                                 .align(Alignment.CenterHorizontally)
                                 .then(if (nbcolumn == 4) Modifier.size(130.dp) else Modifier.fillMaxSize())
                         )
-                        Text(text = movie.title,  modifier = Modifier.weight(1f) .align(Alignment.CenterHorizontally))
-                        Text(text = DateFormat(movie.release_date),  modifier = Modifier.weight(1f) .align(Alignment.CenterHorizontally))
+                        Text(text = movie.title,  modifier = Modifier.align(Alignment.CenterHorizontally))
+                        Text(text = DateFormat(movie.release_date),  modifier = Modifier.align(Alignment.CenterHorizontally))
                     }
                 }
             }
