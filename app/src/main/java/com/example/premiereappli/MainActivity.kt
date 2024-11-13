@@ -47,6 +47,7 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 @Serializable class DestinationFilms
 @Serializable class DestinationSeries
 @Serializable class DestinationActeurs
+@Serializable class DestinationHorreur
 
 
 
@@ -101,6 +102,16 @@ class MainActivity : ComponentActivity() {
                                         navController.navigate(DestinationActeurs())
                                     }
                                 )
+                                NavigationBarItem(
+                                    icon = {
+                                        Icon(
+                                            painter = painterResource(id = R.drawable.horror),
+                                            contentDescription = "horreur"
+                                        )
+                                    },
+                                    selected = currentDestination?.route == DestinationHorreur().toString(),
+                                    onClick = { navController.navigate(DestinationHorreur()) }
+                                )
                             }
 
                         }
@@ -109,6 +120,7 @@ class MainActivity : ComponentActivity() {
                     ) { innerPadding ->
                     NavHost(navController, startDestination = DestinationProfil(),
                         Modifier.padding(innerPadding)) {
+                        composable<DestinationHorreur> {HorreurScreen()}
                         composable<DestinationProfil> { HomeScreen(windowSizeClass, navController) }
                         composable<DestinationFilms> { FilmsScreen(navController, viewModel) }
                         composable<DestinationSeries> { SeriesScreen(navController, viewModel) }
