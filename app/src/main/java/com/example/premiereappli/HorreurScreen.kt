@@ -23,7 +23,7 @@ fun HorreurScreen(viewModel: MainViewModel) {
             }
         }
             ?:item {
-                Text("No collection found")
+                Text("No collections found")
         }
     }
 
