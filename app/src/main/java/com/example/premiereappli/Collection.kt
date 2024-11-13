@@ -1,6 +1,6 @@
 package com.example.premiereappli
 
-data class CollectionResult(
+data class Collection(
     val adult: Boolean,
     val backdrop_path: String,
     val id: Int,

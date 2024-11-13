@@ -120,7 +120,7 @@ class MainActivity : ComponentActivity() {
                     ) { innerPadding ->
                     NavHost(navController, startDestination = DestinationProfil(),
                         Modifier.padding(innerPadding)) {
-                        composable<DestinationHorreur> {HorreurScreen()}
+                        composable<DestinationHorreur> {HorreurScreen(viewModel)}
                         composable<DestinationProfil> { HomeScreen(windowSizeClass, navController) }
                         composable<DestinationFilms> { FilmsScreen(navController, viewModel) }
                         composable<DestinationSeries> { SeriesScreen(navController, viewModel) }

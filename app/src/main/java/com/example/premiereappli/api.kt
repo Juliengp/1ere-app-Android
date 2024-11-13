@@ -65,5 +65,8 @@ interface Api {
                             @Query("api_key") api_key: String,
                             @Query("language") language: String): ActorSeriesResponse
 
+    @GET("search/collection")
+    suspend fun searchCollections(@Query("api_key") api_key: String,
+                                  @Query("query") searchtext: String): CollectionResults
 
 }

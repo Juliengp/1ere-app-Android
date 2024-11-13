@@ -1,8 +1,8 @@
 package com.example.premiereappli
 
-data class collection(
+data class CollectionResults(
     val page: Int,
-    val results: List<CollectionResult>,
+    val results: List<Collection>,
     val total_pages: Int,
     val total_results: Int
 )

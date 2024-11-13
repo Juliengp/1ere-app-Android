@@ -29,6 +29,8 @@ class MainViewModel : ViewModel() {
     private val api: Api
     private val api_key = "317519a83cc36ab9367ba50e5aa75b40"
 
+    val collection = MutableStateFlow<CollectionResults?>(null)
+
     init {
         val retrofit = Retrofit.Builder()
             .baseUrl("https://api.themoviedb.org/3/")
@@ -202,6 +204,12 @@ class MainViewModel : ViewModel() {
         viewModelScope.launch {
             val response = api.actorSeries(actorId.toString(), api_key, language)
             actorSeries.value = response.cast
+        }
+    }
+
+    fun getCollection(searchtext: String = "horror") {
+        viewModelScope.launch {
+            collection.value = api.searchCollections(api_key, searchtext)
         }
     }
 }
